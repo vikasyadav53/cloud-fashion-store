@@ -1,0 +1,347 @@
+create table userdetails (
+	id int primary key,
+	username varchar(50) unique not null,
+	username varchar(50) not null,
+	userpassword varchar(50) not null,
+	accountnonexpired bool default true,
+	accountnonlocked bool default true,
+	credentialsnonexpired bool default true,
+	enabled bool default true
+);
+
+create table roles (
+	id int primary key,
+	name varchar (15) not null
+);
+
+
+insert into roles values (1, 'USER');
+
+
+create table user_role(
+	user_id int,
+	role_id int,
+	constraint userid_userdetails foreign key (user_id) references userdetails (id),
+	constraint id_roles foreign key (role_id) references roles (id),
+	constraint primarykey primary key(user_id, role_id)
+);
+
+alter table userdetails alter column username type varchar(50) ;
+
+select user0_.id as id1_2_1_, user0_.accountnonexpired as accountn2_2_1_, user0_.accountnonlocked as accountn3_2_1_, user0_.credentialsnonexpired as credenti4_2_1_, user0_.enabled as enabled5_2_1_, user0_.username as username6_2_1_, user0_.userpassword as userpass7_2_1_, user0_.userid as userid8_2_1_, roles1_.user_id as user_id1_1_3_, role2_.id as role_id2_1_3_, role2_.id as id1_0_0_, role2_.name as name2_0_0_ from userdetails user0_ left outer join user_role roles1_ on user0_.id=roles1_.user_id left outer join roles role2_ on roles1_.role_id=role2_.id where user0_.id=?
+
+create table productdetails (
+	unique_id varchar(20) primary key,
+	product_id int not null unique,
+	size varchar(3),
+	dominant_material varchar(50),
+	actual_color varchar(50),
+	dominant_color varchar(50),
+	product_details varchar(2000),
+	specifications varchar(2000)
+);
+
+create table productmetadata (
+	unique_id varchar(20) primary key,
+	brand varchar(20),
+	care_instructions varchar(50),
+	title varchar(30),
+	product_type varchar(20),
+	body varchar(2000),
+	size_fit varchar(100),
+	complete_the_look varchar(1000),
+	type varchar(100),
+	ideal_for varchar(50),
+	is_in_stock varchar(50),
+	inventory varchar(30)
+);
+
+create table productprice (
+	unique_id varchar(20) primary key,
+	variant_price int,
+	variant_compare_at_price int
+);
+
+create table clothes_category (
+	categoryid int primary key,
+	categoryname varchar(50) unique not null,
+	isenable boolean default true,
+	imageurl varchar(100)
+);
+insert into clothes_category values (1, 'Men', true, '');
+insert into clothes_category values (2, 'Women', true, '');
+insert into clothes_category values (3, 'Kid', true, '');
+
+update clothes_category set imageurl = 'banner-1.jpg' where categoryid = 1;
+update clothes_category set imageurl = 'banner-2.jpg' where categoryid = 2;
+update clothes_category set imageurl = 'banner-3.jpg' where categoryid = 3;
+
+alter table productprice alter column unique_id type varchar(50);
+
+insert into productprice values ('cc51c3dd925d9d84e2fb28c7918dbbc3', '959', '1599');
+insert into productprice values ('c7e2fe388a93dae5c86b50dd8a5dbd7a', '799', '1999');
+insert into productprice values ('76949d78057a633aace6246045eefd66', '1399', '2799');
+insert into productprice values ('5f83f6b51da1ef93bc0585577b6991e6', '349', '499');
+insert into productprice values ('890bf4355c319a4211296b9d3176d11f', '2999', '2999');
+insert into productprice values ('6cb35dc135630e138f618b455014bf27', '979', '1399');
+insert into productprice values ('07cc95890eb0034fda8c7160a3a5be6d', '1572', '1850');
+insert into productprice values ('0b46713a5d8c659199965af7ad64ddca', '479', '1199');
+insert into productprice values ('8ec62e9d32f52999eda6e2bccb777218', '1359', '3399');
+insert into productprice values ('8cc3d10b36c41a23f579ccb36c58d211', '586', '1955');
+insert into productprice values ('353fff7925a669be503c221c317ec987', '979', '1399');
+insert into productprice values ('10fd08b921bc9ec918e6305eb979e000', '519', '1299');
+insert into productprice values ('ecf22e7affda59a926112300a3bebf9f', '1119', '2799');
+
+
+
+CREATE TABLE IF NOT EXISTS productmetadata
+(
+    unique_id character varying(50)  NOT NULL,
+    brand character varying(20),
+    care_instructions character varying(1000) ,
+    title character varying(100) ,
+    product_type character varying(20) ,
+    body character varying(2000) ,
+    size_fit character varying(100) ,
+    complete_the_look character varying(1000) ,
+    type character varying(1000) ,
+    ideal_for character varying(50) ,
+    is_in_stock character varying(50) ,
+    inventory character varying(2000) ,
+    CONSTRAINT productmetadata_pkey PRIMARY KEY (unique_id)
+)
+
+
+
+
+
+
+
+
+insert into productmetadata values('cc51c3dd925d9d84e2fb28c7918dbbc3', 'IMARA', 'Polyester | Dry-clean', 'IMARA Women Black Solid Top', 'Top', 'Black solid woven regular top,has a V-neck, three-quarter sleeves, an attached lining\nThe model (height 5.8) is wearing a size S\nImprove your personal style with a brand new three-quarter sleeve top designed by IMARA.  When you want to have the perfect outfit for a fun lunch with the girls, youll want to put this black piece with an ankle boot and tapered-leg pants.\nPolyester Dry-clean', 'The model (height 5.8) is wearing a size S', 'Improve your personal style with a brand new three-quarter sleeve top designed by IMARA.  When you want to have the perfect outfit for a fun lunch with the girls, youll want to put this black piece with an ankle boot and tapered-leg pants.', 'Clothing/Women/Tops/IMARA/More by IMARA', 'Women', 'Out of Stock', '0');
+insert into productmetadata values('c7e2fe388a93dae5c86b50dd8a5dbd7a', 'House of Pataudi', '100% cottonMachine-wash', 'House of Pataudi Men Black Printed Straight Kurta', 'Straight Kurta', 'Black printed straight kurta, has a mandarin collar, long sleeves, straight hem, side slits and two pockets\nThe model (height 6) is wearing a size M\nFrom House of Pataudi, this kurta is a great way to show off your style.  Dress this black piece up with your favourite accessories and head out to any family event in style.\n100% cottonMachine-wash', 'The model (height 6) is wearing a size M', 'From House of Pataudi, this kurta is a great way to show off your style.  Dress this black piece up with your favourite accessories and head out to any family event in style.', 'Clothing/Men/Kurtas/House of Pataudi/More by House of Pataudi', 'Men', 'In Stock', 'Shape : Straight | Sleeve Styling : Regular Sleeves | Occasion : Daily | Print or Pattern Type : Geometric | Number of Components : 1 | Design Styling : Regular | Colour Family : Monochrome | Neck : Mandarin Collar | Pattern : Printed | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Fabric Purity : Pure | Stitch : Ready to Wear | Hemline : Straight | Wash Care : Machine Wash | Weave Type : Machine Weave | Length : Knee Length | Slit Detail : Side Slits | Fabric : Cotton');
+insert into productmetadata values('76949d78057a633aace6246045eefd66', 'The White Willow', 'Polycotton | Only spot clean by hand with warm water and mild detergent |  For removing stains or odor sprinkle baking powder on the pillows and dust them off with a clean dry cloth,', 'The White Willow Unisex Off-White Therapedic Memory Foam Pillow', '', 'Set content: 1 pillow  Colour: Off white  Filling: Memory foam  Type: Therapedic  Material: Polycotton  Features: Responsive Memory foam  Adapts to the unique shape of your head, neck, and shoulders for custom support and unparalleled comfort\nDimensions: 58.42 cm x 33.02 cm x 10.16 cm \nPolycotton Only spot clean by hand with warm water and mild detergent  For removing stains or odor sprinkle baking powder on the pillows and dust them off with a clean dry cloth,\nThe White Willow has been founded with the vision to redefine luxury and comfort, and change the way the world sleeps. We offer an exclusive range of Luxury Home products- Bed Pillows, Decorative Cushions &amp; Speciality Support Pillows. Our premium pillows are affordable and easily accessible to all.', 'Dimensions: 58.42 cm x 33.02 cm x 10.16 cm ', 'The White Willow has been founded with the vision to redefine luxury and comfort, and change the way the world sleeps. We offer an exclusive range of Luxury Home products- Bed Pillows, Decorative Cushions &amp; Speciality Support Pillows. Our premium pillows are affordable and easily accessible to all.', 'Home/Unisex/Pillows/The White Willow/More by The White Willow', 'Unisex', 'In Stock', 'Number of Components : 1 | Material : Polycotton | Set Size : 1 | Type : Therapedic | Filling : Memory Foam');
+insert into productmetadata values('5f83f6b51da1ef93bc0585577b6991e6', 'Dupatta Bazaar', 'Chiffon | Hand-wash', 'Dupatta Bazaar Pink Dupatta', 'Dupatta', 'Pink dupatta&nbsp;with crinkled effect\nLength: 2.3 metres Width: 1.1 metres\nChiffon Hand-wash\nComplement your ethnic ensemble with this dupatta from&nbsp;Dupatta Bazaar. Team it with a kurta, leggings and heels for an elegant look.', 'Length: 2.3 metres Width: 1.1 metres', 'Complement your ethnic ensemble with this dupatta from&nbsp;Dupatta Bazaar. Team it with a kurta, leggings and heels for an elegant look.', 'Clothing/Women/Dupatta/Dupatta Bazaar/More by Dupatta Bazaar', 'Women', 'In Stock', 'Pattern : Solid | Occasion : Daily | Border : Solid');
+insert into productmetadata values('890bf4355c319a4211296b9d3176d11f', 'Manyavar', 'Top fabric: Silk Blend | Bottom fabric: Silk Blend | Dry-clean', 'Manyavar Men Yellow & White Self Design Kurta with Churidar', 'Kurta with Churidar', 'Yellow and white self design kurta with churidarYellow straight knee length kurta, has a mandarin collar, long sleeves, straight hem, side slitsWhite solid churidar, drawstring closure \nThe model (height 6) is wearing a size M\nFrom Manyavar, this kurta is a great way to show off your style.  This yellow piece is a great option for any evening event when combined with your favourite trousers or jeans.\nTop fabric: Silk Blend Bottom fabric: Silk Blend Dry-clean', 'The model (height 6) is wearing a size M', 'From Manyavar, this kurta is a great way to show off your style.  This yellow piece is a great option for any evening event when combined with your favourite trousers or jeans.', 'Clothing/Men/Kurta Sets/Manyavar/More by Manyavar', 'Men', 'Out of Stock', 'Occasion : Festive | Number of Components : 2 | Top Pattern : Self Design | Top Design Styling : Regular | Bottom Type : Churidar | Top Fabric : Silk Blend | Dupatta : Without Dupatta | Weave Pattern : Regular | Top Type : Kurta | Wash Care : Dry Clean | Weave Type : Machine Weave | Bottom Fabric : Silk Blend | Top Hemline : Straight | Pattern Coverage : Large | Sleeve Styling : Regular Sleeves | Print or Pattern Type : Textured | Bottom Pattern : Solid | Top Length : Knee Length | Neck : Mandarin Collar | Bottom Closure : Drawstring | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Stitch : Ready to Wear | Top Shape : Straight | Slit Detail : Side Slits');
+insert into productmetadata values('6cb35dc135630e138f618b455014bf27', 'Wintage', 'Kurta fabric: linen | Bottom fabric: pure cotton | Dry-clean', 'Wintage Men Beige Solid Kurta with Pyjamas', 'Kurta with Pyjamas', 'Beige solid kurta with pyjamas Beige straight knee length kurta, has a mandarin collar, long sleeves, straight hem, side slits Whitesolid pyjamas, drawstring closure\nThe model (height 6) is wearing a size M\nFrom Wintage, this kurta is a great way to show off your style.  Dress this beige piece up with your favourite accessories and head out to any family event in style.\nKurta fabric: linen Bottom fabric: pure cotton Dry-clean', 'The model (height 6) is wearing a size M', 'From Wintage, this kurta is a great way to show off your style.  Dress this beige piece up with your favourite accessories and head out to any family event in style.', 'Clothing/Men/Kurta Sets/Wintage/More by Wintage', 'Men', 'Out of Stock', '0');
+insert into productmetadata values('07cc95890eb0034fda8c7160a3a5be6d', 'Geroo Jaipur', 'First wash dry clean than after hand wash', 'Geroo Women Green cotton hand block print skirt', '', 'Green coloured free-size dabu print cotton skirt for women with drawstring closure and an elastic belt on the top Embelished with tissue border and magzi\nThe model is 5.8 and is wearing size 28\nLook simply gorgeous in family get together or home events with this hand block printed jaipuri Cotton skirts by geroo. Made from cotton, this skirt features a drawstring closure with elastic belt on the top which gives this skirt a happy relaxed factor and flexibility. The skirt has big flair and is embelished with tissue border and magzi which gives it a dressy and rich look\nFirst wash dry clean than after hand wash', 'The model is 5.8 and is wearing size 28', 'Look simply gorgeous in family get together or home events with this hand block printed jaipuri Cotton skirts by geroo. Made from cotton, this skirt features a drawstring closure with elastic belt on the top which gives this skirt a happy relaxed factor and flexibility. The skirt has big flair and is embelished with tissue border and magzi which gives it a dressy and rich look', 'Clothing/Women/Skirts/Geroo Jaipur/More by Geroo Jaipur', 'Women', 'Out of Stock', 'Knit or Woven : Knitted and Woven | Transparency : Opaque | Business Unit : Apparel | Closure : Drawstring | Occasion : Ethnic | Main Trend : Colourblocked | Print or Pattern Type : Floral | Number of Components : 1 | Segment : Womens Apparels | Sub Trend : Ethnic Print | Pattern : Colourblocked | Body or Garment Size : To-Fit Denotes Body Measurements in | Hemline : Asymmetric | Wash Care : Machine Wash | Type : A-Line | Surface Styling : Embellished | Length : Maxi | Brick : Skirts | Add-Ons : Comes with a belt | Family : Capris - Shorts and Skirts | Class : A-Line | Slit Detail : No Slit | Fabric : Pure Cotton | Processing Time : 1');
+insert into productmetadata values('0b46713a5d8c659199965af7ad64ddca', 'The Indian Garage Co', 'Cotton  | Machine-wash', 'The Indian Garage Co Men Blue & White Printed A-Line Kurta', 'A-Line Kurta', 'Blue and white printed A-line kurta, has a mandarin collar, long sleeves, zip closure, shoulder tabs, curved hem, side slits\nThe model (height 6) is wearing a size M\nCotton  Machine-wash\nFrom The Indian Garage Co, this kurta is a great way to show off your style.  Youll look dapper as ever in this blue piece paired with slim jeans and sandals, ideal for any nice family gathering.', 'The model (height 6) is wearing a size M', 'From The Indian Garage Co, this kurta is a great way to show off your style.  Youll look dapper as ever in this blue piece paired with slim jeans and sandals, ideal for any nice family gathering.', 'Clothing/Men/Kurtas/The Indian Garage Co/More by The Indian Garage Co', 'Men', 'In Stock', 'Shape : Straight | Sleeve Styling : Regular Sleeves | Occasion : Daily | Print or Pattern Type : Abstract | Design Styling : Regular | Neck : Mandarin Collar | Pattern : Printed | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Fabric Purity : Pure | Hemline : Curved | Wash Care : Machine Wash | Weave Type : Machine Weave | Length : Above Knee | Slit Detail : Side Slits | Fabric : Cotton');
+insert into productmetadata values('8ec62e9d32f52999eda6e2bccb777218', 'Anouk', 'Polyester |  Dry-clean', 'Anouk Women Maroon Solid A-Line Kurta', 'A-Line Kurta', 'Maroon solid A-line kurta, has a round neck, three-quarter sleeves, flared hem\nThe model (height 5.8) is wearing a size S\nKeep it classy all year long with a stylish kurta from Anouk.  Dress up for your next family event by pairing this maroon piece with your best Kolhapuris and simple jewellery.\nPolyester  Dry-clean', 'The model (height 5.8) is wearing a size S', 'Keep it classy all year long with a stylish kurta from Anouk.  Dress up for your next family event by pairing this maroon piece with your best Kolhapuris and simple jewellery.', 'Clothing/Women/Kurtas/Anouk/More by Anouk', 'Women', 'In Stock', 'Shape : A-Line | Sleeve Styling : Regular Sleeves | Occasion : Festive | Print or Pattern Type : Ethnic Motifs | Number of Components : 1 | Design Styling : Regular | Colour Family : Earthy | Neck : Round Neck | Pattern : Solid | Body or Garment Size : To-Fit Denotes Body Measurements in | Sleeve Length : Three-Quarter Sleeves | Weave Pattern : Regular | Fabric Purity : Synthetic | Stitch : Ready to Wear | Hemline : Flared | Wash Care : Dry Clean | Ornamentation : Zari | Weave Type : Machine Weave | Length : Ankle Length | Fabric : Polyester');
+insert into productmetadata values('8cc3d10b36c41a23f579ccb36c58d211', 'SALWAR STUDIO', 'Top fabric: Pure Cotton | Bottom fabric: Pure Cotton | Hand-wash', 'SALWAR STUDIO Boys Orange & White Printed Kurta with Pyjamas', 'Kurta with Pyjamas', 'Orange and white printed kurta with pyjamas Orange straight above knee kurta, has a mandarin collar, long sleeves, straight hem, side slits White solid pyjamas, slip-on closure &nbsp;\nThis kurta pyjama set from SALWAR STUDIOis a must-have in your little boys wardrobe. Let him team&nbsp;this piece with a pair of juttis to complete the look.\nTop fabric: Pure Cotton Bottom fabric: Pure Cotton Hand-wash', '', 'This kurta pyjama set from SALWAR STUDIOis a must-have in your little boys wardrobe. Let him team&nbsp;this piece with a pair of juttis to complete the look.', 'Clothing/Boys/Kurta Sets/SALWAR STUDIO/More by SALWAR STUDIO', 'Boys', 'Out of Stock', '0');
+insert into productmetadata values('353fff7925a669be503c221c317ec987', 'Clora Creation', 'Viscose Rayon | Hand-wash', 'Clora Creation Women Navy Blue Wide Leg Printed Palazzos', 'Printed Palazzos', 'A pair of navy blue printed woven wide leg palazzos\nThe model (height 5.8) is wearing a size 28\nViscose Rayon Hand-wash\nStay cool and comfortable this season with these lightweight and fashionable navy blue palazzos by Clora Creation.  Create a chic, versatile look by pairing them with a sleek tank and gladiator sandals.', 'The model (height 5.8) is wearing a size 28', 'Stay cool and comfortable this season with these lightweight and fashionable navy blue palazzos by Clora Creation.  Create a chic, versatile look by pairing them with a sleek tank and gladiator sandals.', 'Clothing/Women/Palazzos/Clora Creation/More by Clora Creation', 'Women', 'Out of Stock', '0');
+insert into productmetadata values('10fd08b921bc9ec918e6305eb979e000', 'Libas', 'Rayon | Hand-wash', 'Libas Women Blue & White Striped Straight Kurta', 'Straight Kurta', 'Blue and white striped straight kurta, has a shirt collar with half hook-and-eye placket, long sleeves, high hem, multiple slits\nThe model (height 5.8) is wearing a size S\nLook and feel beautiful in this uniquely designed kurta from Libas.  For your next dinner party or family gathering, this blue piece pairs well with dark leggings and chic flats.\nRayon Hand-wash', 'The model (height 5.8) is wearing a size S', 'Look and feel beautiful in this uniquely designed kurta from Libas.  For your next dinner party or family gathering, this blue piece pairs well with dark leggings and chic flats.', 'Clothing/Women/Kurtas/Libas/More by Libas', 'Women', 'In Stock', '64');
+insert into productmetadata values('ecf22e7affda59a926112300a3bebf9f', 'Libas', 'Top fabric: Tussar Silk | Bottom fabric: Tussar Silk | Hand-wash', 'Libas Women Coffee Brown Solid Kurta with Palazzos', 'Kurta with Palazzos', 'Coffee brown solid kurta with palazzos Coffee brown straight calf length kurta, has a keyhole neck, three-quarter sleeves, straight hem, side slits Coffee brown solid palazzos, slip-on closure\nThe model (height 5.8) is wearing a size S\nCelebrate your personal style and roots with this elegant coffee brown kurta set from Libas.  Accessorize this kurta set with sparkly bangles and heels for an elegant look.\nTop fabric: Tussar Silk Bottom fabric: Tussar Silk Hand-wash', 'The model (height 5.8) is wearing a size S', 'Celebrate your personal style and roots with this elegant coffee brown kurta set from Libas.  Accessorize this kurta set with sparkly bangles and heels for an elegant look.', 'Clothing/Women/Kurta Sets/Libas/More by Libas', 'Women', 'Out of Stock', '0');
+
+
+
+
+
+
+
+
+alter table productdetails alter column unique_id type varchar(50);
+
+alter table productdetails alter column size type varchar(10);
+
+insert into productdetails values ('cc51c3dd925d9d84e2fb28c7918dbbc3', '6937673', 'XL', 'Polyester', 'Black', 'Black', 'Black solid woven regular top,has a V-neck, three-quarter sleeves, an attached lining', 'Transparency : Opaque | Sleeve Styling : Bell Sleeves | Occasion : Ethnic | Main Trend : Ethnic Print | Print or Pattern Type : Solid | Number of Components : 1 | Neck : V-Neck | Pattern : Solid | Body or Garment Size : Garment Measurements in | Sleeve Length : Three-Quarter Sleeves | Wash Care : Dry Clean | Weave Type : Woven | Type : Regular | Surface Styling : Embroidered | Length : Regular | Lining : Has a lining | Fabric : Polyester' );
+insert into productdetails values ('c7e2fe388a93dae5c86b50dd8a5dbd7a', '7441182', 'XL', 'cotton', 'Black', 'Black', 'Straight Kurta', 'Shape : Straight | Sleeve Styling : Regular Sleeves | Occasion : Daily | Print or Pattern Type : Geometric | Number of Components : 1 | Design Styling : Regular | Colour Family : Monochrome | Neck : Mandarin Collar | Pattern : Printed | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Fabric Purity : Pure | Stitch : Ready to Wear | Hemline : Straight | Wash Care : Machine Wash | Weave Type : Machine Weave | Length : Knee Length | Slit Detail : Side Slits | Fabric : Cotton' );
+insert into productdetails values ('76949d78057a633aace6246045eefd66', '9245141', 'S', 'Cotton', 'White', 'White', 'Set content: 1 pillow  Colour: Off white  Filling: Memory foam  Type: Therapedic  Material: Polycotton  Features: Responsive Memory foam  Adapts to the unique shape of your head, neck, and shoulders for custom support and unparalleled comfort', 'Number of Components : 1 | Material : Polycotton | Set Size : 1 | Type : Therapedic | Filling : Memory Foam' );
+insert into productdetails values ('5f83f6b51da1ef93bc0585577b6991e6', '1314889', 'Onesize', 'Chiffon', 'Pink', 'Pink', 'Pink dupatta&nbsp;with crinkled effect', 'Pattern : Solid | Occasion : Daily | Border : Solid' );
+insert into productdetails values ('890bf4355c319a4211296b9d3176d11f', '7705322', 'S', 'Silk', 'Yellow | White', 'Yellow', 'Yellow and white self design kurta with churidarYellow straight knee length kurta, has a mandarin collar, long sleeves, straight hem, side slitsWhite solid churidar, drawstring closure', 'Occasion : Festive | Number of Components : 2 | Top Pattern : Self Design | Top Design Styling : Regular | Bottom Type : Churidar | Top Fabric : Silk Blend | Dupatta : Without Dupatta | Weave Pattern : Regular | Top Type : Kurta | Wash Care : Dry Clean | Weave Type : Machine Weave | Bottom Fabric : Silk Blend | Top Hemline : Straight | Pattern Coverage : Large | Sleeve Styling : Regular Sleeves | Print or Pattern Type : Textured | Bottom Pattern : Solid | Top Length : Knee Length | Neck : Mandarin Collar | Bottom Closure : Drawstring | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Stitch : Ready to Wear | Top Shape : Straight | Slit Detail : Side Slits' );
+insert into productdetails values ('6cb35dc135630e138f618b455014bf27', '2160958', 'L', 'Linen', 'Beige', 'Beige', 'Beige solid kurta with pyjamas Beige straight knee length kurta, has a mandarin collar, long sleeves, straight hem, side slits Whitesolid pyjamas, drawstring closure', 'Sleeve Styling : Regular Sleeves | Occasion : Festive | Print or Pattern Type : Solid | Bottom Pattern : Solid | Top Pattern : Solid | Top Design Styling : Regular | Top Length : Knee Length | Bottom Type : Pyjamas | Top Fabric : Linen | Dupatta : Without Dupatta | Neck : Mandarin Collar | Bottom Closure : Drawstring | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Top Type : Kurta | Wash Care : Dry Clean | Weave Type : Machine Weave | Top Shape : Straight | Bottom Fabric : Pure Cotton | Top Hemline : Straight | Slit Detail : Side Slits | Pattern Coverage : None' );
+insert into productdetails values ('07cc95890eb0034fda8c7160a3a5be6d', '7766518', '34', '', 'Green', 'Green', '', 'Knit or Woven : Knitted and Woven | Transparency : Opaque | Business Unit : Apparel | Closure : Drawstring | Occasion : Ethnic | Main Trend : Colourblocked | Print or Pattern Type : Floral | Number of Components : 1 | Segment : Womens Apparels | Sub Trend : Ethnic Print | Pattern : Colourblocked | Body or Garment Size : To-Fit Denotes Body Measurements in | Hemline : Asymmetric | Wash Care : Machine Wash | Type : A-Line | Surface Styling : Embellished | Length : Maxi | Brick : Skirts | Add-Ons : Comes with a belt | Family : Capris - Shorts and Skirts | Class : A-Line | Slit Detail : No Slit | Fabric : Pure Cotton | Processing Time : 1' );
+insert into productdetails values ('0b46713a5d8c659199965af7ad64ddca', '1923426', 'XL', 'Cotton', 'Blue | White', 'Blue', 'Blue and white printed A-line kurta, has a mandarin collar, long sleeves, zip closure, shoulder tabs, curved hem, side slits', 'Shape : Straight | Sleeve Styling : Regular Sleeves | Occasion : Daily | Print or Pattern Type : Abstract | Design Styling : Regular | Neck : Mandarin Collar | Pattern : Printed | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Fabric Purity : Pure | Hemline : Curved | Wash Care : Machine Wash | Weave Type : Machine Weave | Length : Above Knee | Slit Detail : Side Slits | Fabric : Cotton' );
+insert into productdetails values ('8ec62e9d32f52999eda6e2bccb777218', '6551403', 'XS', 'Polyester', 'Maroon', 'Maroon', 'Maroon solid A-line kurta, has a round neck, three-quarter sleeves, flared hem', 'Shape : A-Line | Sleeve Styling : Regular Sleeves | Occasion : Festive | Print or Pattern Type : Ethnic Motifs | Number of Components : 1 | Design Styling : Regular | Colour Family : Earthy | Neck : Round Neck | Pattern : Solid | Body or Garment Size : To-Fit Denotes Body Measurements in | Sleeve Length : Three-Quarter Sleeves | Weave Pattern : Regular | Fabric Purity : Synthetic | Stitch : Ready to Wear | Hemline : Flared | Wash Care : Dry Clean | Ornamentation : Zari | Weave Type : Machine Weave | Length : Ankle Length | Fabric : Polyester' );
+insert into productdetails values ('8cc3d10b36c41a23f579ccb36c58d211', '8389801', '3-4Y', 'Cotton', 'White | Orange', 'Orange', 'Orange and white printed kurta with pyjamas Orange straight above knee kurta, has a mandarin collar, long sleeves, straight hem, side slits White solid pyjamas, slip-on closure &nbsp;', 'Occasion : Festive | Number of Components : 2 | Top Pattern : Printed | Top Design Styling : Regular | Bottom Type : Pyjamas | Top Fabric : Pure Cotton | Dupatta : Without Dupatta | Weave Pattern : Regular | Top Type : Kurta | Wash Care : Hand Wash | Weave Type : Handloom | Bottom Fabric : Pure Cotton | Top Hemline : Straight | Pattern Coverage : None | Sleeve Styling : Regular Sleeves | Waistband : Elasticated | Print or Pattern Type : Abstract | Bottom Pattern : Solid | Top Length : Above Knee | Neck : Mandarin Collar | Bottom Closure : Slip-On | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Stitch : Ready to Wear | Top Shape : Straight | Slit Detail : Side Slits' );
+insert into productdetails values ('353fff7925a669be503c221c317ec987', '9791991', '40', 'Viscose Rayon', 'Blue | Navy', 'Navy', 'A pair of navy blue printed woven wide leg palazzos', 'Transparency : Opaque | Closure : Slip-On | Occasion : Ethnic | Waistband : Elasticated | Print or Pattern Type : Floral | Number of Components : 1 | Pattern : Printed | Body or Garment Size : To-Fit Denotes Body Measurements in | Wash Care : Hand Wash | Fit : Wide Leg | Weave Type : Woven | Length : Regular | Fabric : Viscose Rayon');
+insert into productdetails values ('10fd08b921bc9ec918e6305eb979e000', '7098789', 'S', 'Rayon', 'Blue | White', 'Blue', 'Blue and white striped straight kurta, has a shirt collar with half hook-and-eye placket, long sleeves, high hem, multiple slits', 'Shape : Straight | Sleeve Styling : Regular Sleeves | Occasion : Daily | Print or Pattern Type : Striped | Number of Components : 1 | Design Styling : Regular | Colour Family : Indigo | Neck : Shirt Collar | Pattern : Striped | Body or Garment Size : Garment Measurements in | Sleeve Length : Long Sleeves | Weave Pattern : Regular | Fabric Purity : Synthetic | Stitch : Ready to Wear | Hemline : High-Low | Wash Care : Hand Wash | Weave Type : Machine Weave | Length : Knee Length | Slit Detail : Multiple Slits | Fabric : Viscose Rayon' );
+insert into productdetails values ('ecf22e7affda59a926112300a3bebf9f', '7098851', 'M', 'Silk', 'Brown | Coffee Brown', 'Coffee Brown', 'Coffee brown solid kurta with palazzos Coffee brown straight calf length kurta, has a keyhole neck, three-quarter sleeves, straight hem, side slits Coffee brown solid palazzos, slip-on closure', 'Occasion : Daily | Number of Components : 2 | Top Pattern : Solid | Top Design Styling : Regular | Bottom Type : Palazzos | Top Fabric : Tussar Silk | Dupatta : Without Dupatta | Weave Pattern : Regular | Top Type : Kurta | Wash Care : Hand Wash | Ornamentation : Thread Work | Weave Type : Machine Weave | Bottom Fabric : Tussar Silk | Top Hemline : Straight | Pattern Coverage : None | Sleeve Styling : Regular Sleeves | Waistband : Partially Elasticated | Print or Pattern Type : Solid | Bottom Pattern : Solid | Top Length : Calf Length | Neck : Keyhole Neck | Bottom Closure : Slip-On | Body or Garment Size : Garment Measurements in | Sleeve Length : Three-Quarter Sleeves | Stitch : Ready to Wear | Top Shape : Straight | Slit Detail : Side Slits' );
+
+
+
+alter table productdetails add column imagesurl varchar(2000);
+
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/6937673/2018/8/30/88c6ad02-eab9-42c8-8b8e-cbcd8f015d361535627393491-IMARA-Women-Black-Solid-Top-7471535627393374-1.jpg | http://assets.myntassets.com/v1/assets/images/6937673/2018/8/30/06f7fe3a-08c5-4718-9d5b-d2e82f7806a71535627393473-IMARA-Women-Black-Solid-Top-7471535627393374-2.jpg | http://assets.myntassets.com/v1/assets/images/6937673/2018/8/30/9f9ad6fe-3260-4bf8-9088-59dd7351a0f41535627393453-IMARA-Women-Black-Solid-Top-7471535627393374-3.jpg | http://assets.myntassets.com/v1/assets/images/6937673/2018/8/30/8e268984-4d24-4563-b3ee-c2ff0f2c600c1535627393440-IMARA-Women-Black-Solid-Top-7471535627393374-4.jpg | http://assets.myntassets.com/v1/assets/images/6937673/2018/8/30/bf975857-fee6-4685-9630-ca7cd4f13d631535629577797-IMARA-Women-Black-Solid-Top-81535629577403-5.jpg' where unique_id = 'cc51c3dd925d9d84e2fb28c7918dbbc3';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/7441182/2018/11/10/7f473119-8e08-4548-b5f3-689c25b698b11541830165496-House-of-Pataudi-Men-Black-Printed-Straight-Kurta-3381541830-1.jpg | http://assets.myntassets.com/v1/assets/images/7441182/2018/11/10/28c93a4d-ff32-4418-a213-d6c8d8ce4a761541830165474-House-of-Pataudi-Men-Black-Printed-Straight-Kurta-3381541830-2.jpg | http://assets.myntassets.com/v1/assets/images/7441182/2018/11/10/d859a4ad-46e8-4a00-8fb0-581ad42371ff1541830165454-House-of-Pataudi-Men-Black-Printed-Straight-Kurta-3381541830-3.jpg | http://assets.myntassets.com/v1/assets/images/7441182/2018/11/10/f5427679-c669-42b7-86a1-9aec1d1837f81541830165438-House-of-Pataudi-Men-Black-Printed-Straight-Kurta-3381541830-4.jpg' where unique_id = 'c7e2fe388a93dae5c86b50dd8a5dbd7a';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/9245141/2019/4/10/c4aecdbc-1c39-4c4b-871c-db76742ce5fc1554895725260-The-White-Willow-Unisex-Off-White-Therapedic-Memory-Foam-Pil-1.jpg | http://assets.myntassets.com/v1/assets/images/9245141/2019/4/10/90e4ecdb-3fcb-40ec-83a3-6e7a72010fb41554895725245-The-White-Willow-Unisex-Off-White-Therapedic-Memory-Foam-Pil-2.jpg | http://assets.myntassets.com/v1/assets/images/9245141/2019/4/10/86bc70a1-72fa-4f35-b72d-7525128ceed41554895725227-The-White-Willow-Unisex-Off-White-Therapedic-Memory-Foam-Pil-3.jpg | http://assets.myntassets.com/v1/assets/images/9245141/2019/4/10/ddccd06d-d9be-4a44-8c96-6605d5fc55e21554895725197-The-White-Willow-Unisex-Off-White-Therapedic-Memory-Foam-Pil-4.jpg | http://assets.myntassets.com/v1/assets/images/9245141/2019/4/10/7aca5282-0b33-44a6-b278-56273bf30c931554895725171-The-White-Willow-Unisex-Off-White-Therapedic-Memory-Foam-Pil-5.jpg' where unique_id = '76949d78057a633aace6246045eefd66';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/1314889/2016/4/20/11461153070320-Dupatta-Bazaar-Black--Beige-Checked-Dupatta-1961461153069992-1.jpg | http://assets.myntassets.com/v1/assets/images/1314889/2016/4/20/11461153070226-Dupatta-Bazaar-Black--Beige-Checked-Dupatta-1961461153069992-2.jpg | http://assets.myntassets.com/v1/assets/images/1314889/2016/4/20/11461153070149-Dupatta-Bazaar-Black--Beige-Checked-Dupatta-1961461153069992-3.jpg' where unique_id = '5f83f6b51da1ef93bc0585577b6991e6';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/7705322/2018/10/29/e9ea701d-93aa-460f-a0dc-e916afdb4f6a1540807741626-Manyavar-Mens-Yellow-Full-Sleeve-Regular-Fit-Banded-Collar-Kurta--Churidar-Set-4991540807741431-1.jpg' where unique_id = '890bf4355c319a4211296b9d3176d11f';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/2160958/2017/10/5/11507205292287-Wintage-Men-Beige-Solid-Kurta-with-Pyjamas-7861507205292072-1.jpg | http://assets.myntassets.com/v1/assets/images/2160958/2017/10/5/11507205292264-Wintage-Men-Beige-Solid-Kurta-with-Pyjamas-7861507205292072-2.jpg | http://assets.myntassets.com/v1/assets/images/2160958/2017/10/5/11507205292240-Wintage-Men-Beige-Solid-Kurta-with-Pyjamas-7861507205292072-3.jpg | http://assets.myntassets.com/v1/assets/images/2160958/2017/10/5/11507205292217-Wintage-Men-Beige-Solid-Kurta-with-Pyjamas-7861507205292072-4.jpg | http://assets.myntassets.com/v1/assets/images/2160958/2017/10/5/11507205292181-Wintage-Men-Beige-Solid-Kurta-with-Pyjamas-7861507205292072-5.jpg' where unique_id = '6cb35dc135630e138f618b455014bf27';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/7766518/2018/11/12/ec7ea490-1f0a-47a2-952d-830bf7db95591542012680302-Geroo-Women-Green-cotton-hand-block-print-skirt-9351542012680161-1.jpg | http://assets.myntassets.com/v1/assets/images/7766518/2018/11/12/04ad2286-2977-48f4-9d47-df1fe73a84731542012680275-Geroo-Women-Green-cotton-hand-block-print-skirt-9351542012680161-2.jpg | http://assets.myntassets.com/v1/assets/images/7766518/2018/11/12/523a090a-0e40-4191-8044-0201172066de1542012680248-Geroo-Women-Green-cotton-hand-block-print-skirt-9351542012680161-3.jpg | http://assets.myntassets.com/v1/assets/images/7766518/2018/11/12/de412e35-424c-45d3-82f1-1d75bb8e321b1542012680224-Geroo-Women-Green-cotton-hand-block-print-skirt-9351542012680161-4.jpg | http://assets.myntassets.com/v1/assets/images/7766518/2018/11/12/991472fd-1e7b-4539-97d9-3d93953de8a01542012680206-Geroo-Women-Green-cotton-hand-block-print-skirt-9351542012680161-5.jpg' where unique_id = '07cc95890eb0034fda8c7160a3a5be6d';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/1923426/2017/6/21/11498040802877-The-Indian-Garage-Co-Men-Blue--White-Printed-A-Line-Kurta-7691498040798521-1.jpg | http://assets.myntassets.com/v1/assets/images/1923426/2017/6/21/11498040802858-The-Indian-Garage-Co-Men-Blue--White-Printed-A-Line-Kurta-7691498040798521-2.jpg | http://assets.myntassets.com/v1/assets/images/1923426/2017/6/21/11498040802845-The-Indian-Garage-Co-Men-Blue--White-Printed-A-Line-Kurta-7691498040798521-3.jpg | http://assets.myntassets.com/v1/assets/images/1923426/2017/6/21/11498040802824-The-Indian-Garage-Co-Men-Blue--White-Printed-A-Line-Kurta-7691498040798521-4.jpg | http://assets.myntassets.com/v1/assets/images/1923426/2017/6/21/11498040802800-The-Indian-Garage-Co-Men-Blue--White-Printed-A-Line-Kurta-7691498040798521-5.jpg' where unique_id = '0b46713a5d8c659199965af7ad64ddca';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/6551403/2018/12/19/1ab6bfba-4825-4e59-ac0e-21e1ebb63aeb1545212392273-Anouk-Women-Maroon-Solid-A-Line-Kurta-8341545212391512-1.jpg | http://assets.myntassets.com/v1/assets/images/6551403/2018/12/19/b3670fb6-a561-40b1-9d69-9493cbbc582c1545212392251-Anouk-Women-Maroon-Solid-A-Line-Kurta-8341545212391512-2.jpg | http://assets.myntassets.com/v1/assets/images/6551403/2018/12/19/848be171-6b6f-41e6-9af8-0409bdb545f31545212392236-Anouk-Women-Maroon-Solid-A-Line-Kurta-8341545212391512-3.jpg | http://assets.myntassets.com/v1/assets/images/6551403/2018/12/19/d3af7853-de3f-406e-a895-c86ca8a5347f1545212392223-Anouk-Women-Maroon-Solid-A-Line-Kurta-8341545212391512-4.jpg' where unique_id = '8ec62e9d32f52999eda6e2bccb777218';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/productimage/2019/1/4/524faa41-cecd-48b9-bfcf-f92b696e80581546592411715-1.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/1/4/0c80d05b-9e7e-4622-ab41-8a898caa906e1546592411750-2.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/1/4/6171830a-5f9c-4488-9d53-d8f34b002bce1546592411790-3.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/1/4/af14cc98-060c-4a8d-8ebc-f688d58662dd1546592411828-4.jpg' where unique_id = '8cc3d10b36c41a23f579ccb36c58d211';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/productimage/2019/5/24/cd9e6d5d-50cf-4188-b229-8b890c4210ae1558658750484-1.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/5/24/2e63922a-1ba1-41d1-a3e0-c698eef586fe1558658750516-2.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/5/24/cb471a2d-c834-4178-ad78-28b99e4047261558658750548-3.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/5/24/97b1c435-8469-480e-bbf3-ec88d69734a81558658750576-4.jpg | http://assets.myntassets.com/v1/assets/images/productimage/2019/5/24/1c7ad837-82e0-47e7-90fd-e6a60f586f161558658750603-5.jpg' where unique_id = '353fff7925a669be503c221c317ec987';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/7098789/2018/8/20/dad722b8-f2c0-4e7e-aa5f-a3814856f8581534741627049-Libas-Women-Blue--White-Striped-Pathani-Kurta-6431534741626884-1.jpg | http://assets.myntassets.com/v1/assets/images/7098789/2018/8/20/239210d3-5481-48a9-94b4-c52b84c915411534741627030-Libas-Women-Blue--White-Striped-Pathani-Kurta-6431534741626884-2.jpg | http://assets.myntassets.com/v1/assets/images/7098789/2018/8/20/b433c95b-02df-4729-85d6-450f8a72c34e1534741627003-Libas-Women-Blue--White-Striped-Pathani-Kurta-6431534741626884-3.jpg | http://assets.myntassets.com/v1/assets/images/7098789/2018/8/20/d0e224aa-9a05-429e-a699-d19e5e16e4d01534741626984-Libas-Women-Blue--White-Striped-Pathani-Kurta-6431534741626884-4.jpg | http://assets.myntassets.com/v1/assets/images/7098789/2018/8/20/9b50c872-e850-4523-ba8f-8bab4b8e4c291534741626965-Libas-Women-Blue--White-Striped-Pathani-Kurta-6431534741626884-5.jpg' where unique_id = '10fd08b921bc9ec918e6305eb979e000';
+update productdetails set imagesurl = 'http://assets.myntassets.com/v1/assets/images/7098851/2018/8/17/8728af1c-969f-445c-b12d-12b6c3fb589e1534495475899-Libas-Women-Kurta-Sets-1471534495475783-1.jpg | http://assets.myntassets.com/v1/assets/images/7098851/2018/8/17/be3fd714-e82a-472c-94b3-3481576f8d3d1534495475880-Libas-Women-Kurta-Sets-1471534495475783-2.jpg | http://assets.myntassets.com/v1/assets/images/7098851/2018/8/17/dfc51022-ea2a-4732-aaee-a5cc34560cf01534495475862-Libas-Women-Kurta-Sets-1471534495475783-3.jpg | http://assets.myntassets.com/v1/assets/images/7098851/2018/8/17/27d1a787-4ba5-40c9-a132-1ed8624c8d081534495475843-Libas-Women-Kurta-Sets-1471534495475783-4.jpg | http://assets.myntassets.com/v1/assets/images/7098851/2018/8/17/86e5b9d0-2843-4250-be39-f6ebb54244001534495475918-Libas-Women-Kurta-Sets-1471534495475783-5.jpg' where unique_id = 'ecf22e7affda59a926112300a3bebf9f';
+
+
+
+
+
+
+
+
+
+insert into clothes_category values (4, 'Boy', true, 'banner-4.jpg');
+insert into clothes_category values (5, 'Unisex', true, 'banner-5.jpg');
+
+alter table productmetadata add column category_for integer constraint category_foreign_key references clothes_category(categoryid);
+
+update productmetadata set category_for = 1 where ideal_for = 'Men';
+update productmetadata set category_for = 2 where ideal_for = 'Women';
+update productmetadata set category_for = 4 where ideal_for = 'Boys';
+update productmetadata set category_for = 5 where ideal_for = 'Unisex';	
+
+
+
+select concat('alter table public.productprice drop constraint ', constraint_name) as my_query
+from information_schema.table_constraints
+where table_schema = 'public'
+      and table_name = 'productprice'
+      and constraint_type = 'PRIMARY KEY';
+
+alter table public.productprice drop constraint productprice_pkey;
+
+create sequence productprice_priceid;
+
+alter table productprice add column priceid integer constraint priceid_pk primary key default nextval('productprice_priceid');
+
+ALTER SEQUENCE productprice_priceid OWNED BY productprice.priceid;
+
+
+alter table productdetails add column priceid integer;
+
+update productdetails set priceid = 1 where unique_id = 'cc51c3dd925d9d84e2fb28c7918dbbc3';
+update productdetails set priceid = 2 where unique_id = 'c7e2fe388a93dae5c86b50dd8a5dbd7a';
+update productdetails set priceid = 3 where unique_id = '76949d78057a633aace6246045eefd66';
+update productdetails set priceid = 4 where unique_id = '5f83f6b51da1ef93bc0585577b6991e6';
+update productdetails set priceid = 5 where unique_id = '890bf4355c319a4211296b9d3176d11f';
+update productdetails set priceid = 6 where unique_id = '6cb35dc135630e138f618b455014bf27';
+update productdetails set priceid = 7 where unique_id = '07cc95890eb0034fda8c7160a3a5be6d';
+update productdetails set priceid = 8 where unique_id = '0b46713a5d8c659199965af7ad64ddca';
+update productdetails set priceid = 9 where unique_id = '8ec62e9d32f52999eda6e2bccb777218';
+update productdetails set priceid = 10 where unique_id = '8cc3d10b36c41a23f579ccb36c58d211';
+update productdetails set priceid = 11 where unique_id = '353fff7925a669be503c221c317ec987';
+update productdetails set priceid = 12 where unique_id = '10fd08b921bc9ec918e6305eb979e000';
+update productdetails set priceid = 13 where unique_id = 'ecf22e7affda59a926112300a3bebf9f';
+
+
+alter table productdetails add constraint productprice_priceid_fk foreign key (priceid) references productprice(priceid);
+
+alter table productprice drop column unique_id;
+
+
+
+
+select concat('alter table public.productmetadata drop constraint ', constraint_name) as my_query
+from information_schema.table_constraints
+where table_schema = 'public'
+      and table_name = 'productmetadata'
+      and constraint_type = 'PRIMARY KEY';
+
+alter table public.productmetadata drop constraint productmetadata_pkey;
+
+
+create sequence productmetadata_priceid;
+
+alter table productmetadata add column metadataid integer constraint metadataid_pk primary key default nextval('productmetadata_priceid');
+
+ALTER SEQUENCE productprice_priceid OWNED BY productmetadata.metadataid;
+
+
+create table productmetadata_productdetails (
+	metadata_id integer,
+	unique_id varchar(50),
+	constraint matadataid_uniqueid_pk primary key (metadata_id, unique_id),
+	constraint matadataid_fk foreign key (metadata_id) references productmetadata(metadataid),
+	constraint uniqueid_fk foreign key (unique_id) references productdetails(unique_id)
+);
+
+alter table productmetadata drop column unique_id;
+
+
+alter table productmetadata drop column inventory;
+
+alter table productmetadata add column inventory integer;
+
+update productmetadata set inventory = 1 where metadataid = 1;
+update productmetadata set inventory = 2 where metadataid = 2;
+update productmetadata set inventory = 3 where metadataid = 3;
+update productmetadata set inventory = 4 where metadataid = 4;
+update productmetadata set inventory = 5 where metadataid = 5;
+update productmetadata set inventory = 6 where metadataid = 6;
+update productmetadata set inventory = 7 where metadataid = 7;
+update productmetadata set inventory = 8 where metadataid = 8;
+update productmetadata set inventory = 9 where metadataid = 9;
+update productmetadata set inventory = 10 where metadataid = 10;
+update productmetadata set inventory = 11 where metadataid = 11;
+update productmetadata set inventory = 12 where metadataid = 12;
+update productmetadata set inventory = 13 where metadataid = 13;
+
+
+
+insert into productmetadata_productdetails values ('1', 'cc51c3dd925d9d84e2fb28c7918dbbc3');
+insert into productmetadata_productdetails values ('2', 'c7e2fe388a93dae5c86b50dd8a5dbd7a');
+
+insert into productmetadata_productdetails values ('3', '76949d78057a633aace6246045eefd66');
+insert into productmetadata_productdetails values ('6', '5f83f6b51da1ef93bc0585577b6991e6');
+
+insert into productmetadata_productdetails values ('12', '890bf4355c319a4211296b9d3176d11f');
+insert into productmetadata_productdetails values ('13', '6cb35dc135630e138f618b455014bf27');
+
+insert into productmetadata_productdetails values ('7', '07cc95890eb0034fda8c7160a3a5be6d');
+insert into productmetadata_productdetails values ('4', '0b46713a5d8c659199965af7ad64ddca');
+
+insert into productmetadata_productdetails values ('8', '8ec62e9d32f52999eda6e2bccb777218');
+
+insert into productmetadata_productdetails values ('5', '8cc3d10b36c41a23f579ccb36c58d211');
+insert into productmetadata_productdetails values ('9', '353fff7925a669be503c221c317ec987');
+
+insert into productmetadata_productdetails values ('10', '10fd08b921bc9ec918e6305eb979e000');
+insert into productmetadata_productdetails values ('11', 'ecf22e7affda59a926112300a3bebf9f');
+
+create table customerdetails (
+	id integer primary key,
+	userid varchar(50),
+	firstname varchar(100) not null,
+	lastname varchar(100) not null,
+	companyname varchar(100),
+	country varchar(50) not null,
+	streetaddress varchar(2000) not null,
+	zipcode varchar(10),
+	city varchar(100) not null,
+	emailaddress varchar(200) not null unique,
+	phone varchar(20) not null,
+	constraint userdetails_userid_fk foreign key (userid) references userdetails(userid)
+);
+
+alter table customerdetails drop constraint userdetails_userid_fk;
+
+alter table customerdetails add constraint unique_userid Unique(userid);
+
+create table order_table (
+	oid integer primary key,
+	status varchar(10) not null,
+	paymentid varchar(255) not null,
+	userid varchar(50),
+	createdat timestamp,
+	modat timestamp,
+	constraint paymentid_fk FOREIGN key (paymentid) references razorpay_transaction(razorpay_payment_id),
+	constraint order_table_userid_fk foreign key (userid) references customerdetails(userid)
+);
+
+create table suborder_table (
+	soid integer primary key,
+	oid integer not null,
+	productid varchar(50) not null,
+	quantity integer not null,
+	price integer not null,
+	constraint oid_fk FOREIGN key (oid) references order_table(oid)
+	
+);
+
+
+
+
+
