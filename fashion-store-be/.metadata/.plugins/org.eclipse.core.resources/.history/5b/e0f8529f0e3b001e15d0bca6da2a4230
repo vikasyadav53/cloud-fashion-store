@@ -1,0 +1,28 @@
+package com.fashionstore.basicauth.daos;
+
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "order-table")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order {
+
+	private Long oid;
+	private String status;
+	private Long paymentid;
+	private Long userid;
+	private Date createdat;
+	private Date modat;
+	
+}

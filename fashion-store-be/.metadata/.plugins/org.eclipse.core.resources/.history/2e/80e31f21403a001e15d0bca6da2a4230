@@ -1,0 +1,36 @@
+package com.fashionstore.basicauth.models.razorpay;
+
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="razorpay_order")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RazorpayTransactionOrder {
+	public Integer amount;
+	public Integer amount_paid;
+	@OneToMany(mappedBy = "order")
+	public Set<Notes> notes;
+	public Date created_at;
+	public Integer amount_due;
+	public String currency;
+	public String receipt;
+	@Id
+	public String id;
+	public String entity;
+	public String offer_id;
+	public String status;
+	public Integer attempts;
+}

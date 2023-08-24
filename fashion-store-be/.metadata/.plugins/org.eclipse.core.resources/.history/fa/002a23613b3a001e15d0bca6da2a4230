@@ -1,0 +1,29 @@
+package com.fashionstore.basicauth.models.razorpay;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="razorpay_order_notes")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Notes{
+	@Id
+	public String id;
+    public List<String> notes;
+    @ManyToOne
+    @JoinColumn(name = "orderid", referencedColumnName = "id")
+    public RazorpayTransactionOrder order;
+}

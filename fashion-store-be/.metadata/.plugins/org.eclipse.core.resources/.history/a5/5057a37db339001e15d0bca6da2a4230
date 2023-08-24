@@ -1,0 +1,38 @@
+package com.fashionstore.basicauth.controllers;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fashionstore.basicauth.models.RazorpayOrderManagClient;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+
+@RestController
+public class RazorpayPaymentController {
+
+	@Value("${razorpay.client.key}")
+	String key;
+	
+	@Value("${razorpay.client.secret}")
+	String secret;
+	
+	@PostMapping("/payment/create_order")
+	public String createOrderWithRazorpayment(@RequestBody() RazorpayOrderManagClient razorPayOrderClient) throws RazorpayException {
+		RazorpayClient razorpayClient = new RazorpayClient(key, secret);
+		JSONObject orderRequest = new JSONObject();
+		orderRequest.put("amount", razorPayOrderClient.getAmount()*100);
+		orderRequest.put("currency", razorPayOrderClient.getCurrency());
+		orderRequest.put("receipt", razorPayOrderClient.getReceipt());
+		JSONObject notes = new JSONObject();
+		notes.put("notes_key_1", "Tea, Earl Grey, Hot");
+		notes.put("notes_key_1", "Tea, Earl Grey, Hot");
+		orderRequest.put("notes", notes);
+		Order order = razorpayClient.orders.create(orderRequest);
+		return order.toString();
+	}
+
+}

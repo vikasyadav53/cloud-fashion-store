@@ -1,0 +1,51 @@
+package com.fashionstore.basicauth.daos;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "productdetails")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+//@TypeDef(name = "ProductImageType", typeClass = ProductImageType.class)
+public class ProductDetails {
+	
+	@Id
+	@Column(name = "unique_id")
+	@GeneratedValue(generator = "custom-uuid")
+	@GenericGenerator(name = "custom-uuid", strategy = "com.fashionstore.basicauth.daos.generators.CustomUUIDGenerator")
+	private String uniqueId;	
+	private Long productId;
+	private String size;
+	private String dominantMaterial;
+	private String actualColor;
+	private String dominantColor;
+	private String productDetails;
+	private String specifications;
+	//@Type(type = "ProductImageType")
+	@Column(name = "imagesurl")
+	private List<String> imagesurl;
+	@ManyToMany(mappedBy = "productDetails")
+	@JsonBackReference
+	private List<ProductMetadata> productMetadatList;
+	
+}

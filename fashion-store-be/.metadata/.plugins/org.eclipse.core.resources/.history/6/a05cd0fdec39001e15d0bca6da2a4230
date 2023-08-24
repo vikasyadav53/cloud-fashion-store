@@ -1,0 +1,5 @@
+package com.fashionstore.basicauth.models.razorpay;
+
+public class Notes {
+
+}

@@ -1,0 +1,54 @@
+package com.fashionstore.basicauth.daos;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="razorpay_order_notes")
+//@Setter
+//@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Notes{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public String uid;
+    public String notes;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderid", referencedColumnName = "id")
+    public RazorpayTransactionOrder order;
+    
+    
+	public String getId() {
+		return uid;
+	}
+	public void setId(String uid) {
+		this.uid = uid;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	public RazorpayTransactionOrder getOrder() {
+		return order;
+	}
+	public void setOrder(RazorpayTransactionOrder order) {
+		this.order = order;
+	}
+    
+    
+    
+}

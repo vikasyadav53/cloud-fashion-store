@@ -1,0 +1,47 @@
+package com.fashionstore.basicauth.daos;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "customerdetails")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(name = "userid")
+	private String userid;
+	@Column(name = "firstname")
+	private String firstname;
+	@Column(name = "lastname")
+	private String lastname;
+	@Column(name = "companyname")
+	private String companyname;
+	@Column(name = "country")
+	private String country;
+	@Column(name = "streetaddress")
+	private String streetaddress;
+	@Column(name = "zipcode")
+	private String zipcode;
+	@Column(name = "city")
+	private String city;
+	@Column(name = "emailaddress")
+	private String emailaddress;
+	@Column(name = "phone")
+	private String phone;
+	
+}

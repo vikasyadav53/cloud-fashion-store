@@ -1,0 +1,12 @@
+com\fashionstore\basicauth\daos\Role.class
+com\fashionstore\basicauth\daos\User.class
+com\fashionstore\basicauth\configurations\CustomSecurityConfiguration.class
+com\fashionstore\basicauth\configurations\CustomUserDetails.class
+com\fashionstore\basicauth\controllers\UserManagementController.class
+com\fashionstore\basicauth\exceptions\UserAlreadyRegistered.class
+com\fashionstore\basicauth\services\UserManagementServiceImpl.class
+com\fashionstore\basicauth\exceptions\CustomExceptions.class
+com\fashionstore\basicauth\BasicAuthenticationApplication.class
+com\fashionstore\basicauth\repositories\UsersRepository.class
+com\fashionstore\basicauth\services\UserManagementService.class
+com\fashionstore\basicauth\configurations\CustomUserDetailsService.class

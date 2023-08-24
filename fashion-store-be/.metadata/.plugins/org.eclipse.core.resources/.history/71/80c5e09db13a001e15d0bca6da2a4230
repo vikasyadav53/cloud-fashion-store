@@ -1,0 +1,142 @@
+package com.fashionstore.basicauth.daos;
+
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="razorpay_order")
+//@Setter
+//@Getter
+@NoArgsConstructor
+//@AllArgsConstructor
+public class RazorpayTransactionOrder {
+	public Integer amount;
+	public Integer amount_paid;
+	@OneToMany(mappedBy = "order")
+	public Set<Notes> notes;
+	public Date created_at;
+	public Integer amount_due;
+	public String currency;
+	public String receipt;
+	@Id
+	public String id;
+	public String entity;
+	public String offer_id;
+	public String status;
+	public Integer attempts;
+	
+	
+	
+	
+	public Integer getAmount() {
+		return amount;
+	}
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+	public Integer getAmount_paid() {
+		return amount_paid;
+	}
+	public void setAmount_paid(Integer amount_paid) {
+		this.amount_paid = amount_paid;
+	}
+	public Set<Notes> getNotes() {
+		return notes;
+	}
+	public void setNotes(Set<Notes> notes) {
+		this.notes = notes;
+	}
+	public Date getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+	public Integer getAmount_due() {
+		return amount_due;
+	}
+	public void setAmount_due(Integer amount_due) {
+		this.amount_due = amount_due;
+	}
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	public String getReceipt() {
+		return receipt;
+	}
+	public void setReceipt(String receipt) {
+		this.receipt = receipt;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getEntity() {
+		return entity;
+	}
+	public void setEntity(String entity) {
+		this.entity = entity;
+	}
+	public String getOffer_id() {
+		return offer_id;
+	}
+	public void setOffer_id(String offer_id) {
+		this.offer_id = offer_id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Integer getAttempts() {
+		return attempts;
+	}
+	public void setAttempts(Integer attempts) {
+		this.attempts = attempts;
+	}
+	@Override
+	public String toString() {
+		return "RazorpayTransactionOrder [amount=" + amount + ", amount_paid=" + amount_paid + ", notes=" + notes
+				+ ", created_at=" + created_at + ", amount_due=" + amount_due + ", currency=" + currency + ", receipt="
+				+ receipt + ", id=" + id + ", entity=" + entity + ", offer_id=" + offer_id + ", status=" + status
+				+ ", attempts=" + attempts + "]";
+	}
+	
+	
+	public RazorpayTransactionOrder(Integer amount, Integer amount_paid, Set<Notes> notes, Date created_at,
+			Integer amount_due, String currency, String receipt, String id, String entity, String offer_id,
+			String status, Integer attempts) {
+		super();
+		this.amount = amount;
+		this.amount_paid = amount_paid;
+		this.notes = notes;
+		this.created_at = created_at;
+		this.amount_due = amount_due;
+		this.currency = currency;
+		this.receipt = receipt;
+		this.id = id;
+		this.entity = entity;
+		this.offer_id = offer_id;
+		this.status = status;
+		this.attempts = attempts;
+	}
+	
+	
+	
+}

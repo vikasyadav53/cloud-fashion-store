@@ -1,0 +1,66 @@
+package com.fashionstore.basicauth.configurations;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
+
+import com.fashionstore.basicauth.daos.User;
+
+public class CustomUserDetails implements UserDetails {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8429242831263692126L;
+	private User userDetails;
+
+	public CustomUserDetails(User userDetails) {
+		this.userDetails = userDetails;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if (CollectionUtils.isEmpty(userDetails.getRoles()))
+			return null;
+		return userDetails.getRoles().stream().map(e -> new SimpleGrantedAuthority(e.getName())).collect(Collectors.toSet());
+	}
+
+	@Override
+	public String getPassword() {
+		return userDetails.getPassword();
+	}
+	
+	public String getUserId() {
+		return userDetails.getUserId();
+	}
+
+	@Override
+	public String getUsername() {
+		return userDetails.getName();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return userDetails.isAccountNonExpired();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return userDetails.isAccountNonLocked();
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return userDetails.isCredentialsNonExpired();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return userDetails.isEnabled();
+	}
+
+}

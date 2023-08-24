@@ -1,0 +1,40 @@
+package com.fashionstore.basicauth.daos;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Table(name = "clothes_category")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class ClothesCategory {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "categoryid")
+	private Long categoryFor;
+	private String categoryname;
+	private Boolean isenable;
+	private String imageurl;
+	@OneToMany(mappedBy = "clothesCategory", fetch = FetchType.LAZY)
+	private List<ProductMetadata> productMetadataList;
+
+}

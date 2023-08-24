@@ -1,0 +1,10 @@
+package com.fashionstore.basicauth.models.razorpay;
+
+
+@Data
+public class RazorpayTransactionModel {
+
+	private String razorpayOrderId;
+	private String razorpayPaymentId;
+	private String razorpaySignature;
+}

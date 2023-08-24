@@ -1,0 +1,56 @@
+package com.fashionstore.basicauth.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fashionstore.basicauth.configurations.CustomUserDetails;
+import com.fashionstore.basicauth.daos.User;
+import com.fashionstore.basicauth.exceptions.CustomExceptions;
+import com.fashionstore.basicauth.exceptions.UserAlreadyRegistered;
+import com.fashionstore.basicauth.models.CustomerDetails;
+import com.fashionstore.basicauth.services.UserManagementService;
+
+@RestController
+public class UserManagementController {
+	
+	@Autowired
+	UserManagementService userManagementService;
+	
+	@PostMapping(value = "/registration")
+	public Long saveUser(@RequestBody User user) {
+		return userManagementService.saveUser(user);
+	}
+	
+	@PostMapping(value = "/registration1")
+	public Long saveCustomer(@RequestBody CustomerDetails customer) {
+		return userManagementService.saveCustomerDetails(customer);
+	}
+	
+	@PostMapping("/login")
+	public CustomUserDetails login() {
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		if (securityContext == null ) {
+			return null;
+		}
+		return ((CustomUserDetails)securityContext.getAuthentication().getPrincipal());
+	}
+	
+	@GetMapping(value = "/hello")
+	public String getHello() {
+		return "Hello";
+	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public String handleRuntimeExceptions (RuntimeException runtimeException) {
+		if (runtimeException instanceof UserAlreadyRegistered) 
+			return CustomExceptions.USER_ALREADY_REGISTERED.toString();
+		return "Internal Server Exception";
+	}
+
+}

@@ -1,0 +1,18 @@
+server:
+  port: 8081
+  
+spring:  datasource:    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ecommercedb
+    username: postgres
+    password: root
+    hikari:      auto-commit: true
+  jpa:
+    show-sql: true
+    hibernate:      ddl-auto: update
+      
+logging:  level:    root: info
+    
+razorpay:
+  client:
+    key: rzp_test_cieBJC1FtSRk5v
+    secret: JRBLXsHrLhLyZs6FzyJi9scY    

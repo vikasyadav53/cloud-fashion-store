@@ -1,0 +1,33 @@
+package com.fashionstore.basicauth.daos;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "razorpay_transaction")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RazorpayTransaction {
+	
+	private String razorpayOrderId;
+	@Id
+	private String razorpayPaymentId;
+	private String razorpaySignature;
+	/*@OneToOne(fetch = FetchType.LAZY, mappedBy="payment")
+	@JsonBackReference
+	private Order order;*/
+
+}

@@ -1,0 +1,25 @@
+package com.fashionstore.basicauth.daos;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "razorpay_transaction")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RazorpayTransaction {
+	
+	private String razorpayOrderId;
+	@Id
+	private String razorpayPaymentId;
+	private String razorpaySignature;
+
+}

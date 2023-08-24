@@ -1,0 +1,5 @@
+package com.fashionstore.basicauth.repositories;
+
+public interface OrderRepository {
+
+}

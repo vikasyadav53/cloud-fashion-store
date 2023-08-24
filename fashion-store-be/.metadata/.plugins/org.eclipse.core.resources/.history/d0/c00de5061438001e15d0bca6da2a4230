@@ -1,0 +1,21 @@
+package com.fashionstore.basicauth.models;
+
+import lombok.Data;
+
+@Data
+public class CustomerDetails {
+	
+	private String userid;
+	private String firstname;
+	private String lastname;
+	private String companyname;
+	private String country;
+	private String streetaddress;
+	private String zipcode;
+	private String city;
+	private String emailaddress;
+	private String phone;
+	
+	
+	
+}

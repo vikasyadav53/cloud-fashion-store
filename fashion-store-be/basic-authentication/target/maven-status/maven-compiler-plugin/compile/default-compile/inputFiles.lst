@@ -1,0 +1,12 @@
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\repositories\UsersRepository.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\services\UserManagementServiceImpl.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\services\UserManagementService.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\daos\User.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\configurations\CustomSecurityConfiguration.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\daos\Role.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\configurations\CustomUserDetails.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\controllers\UserManagementController.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\configurations\CustomUserDetailsService.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\exceptions\UserAlreadyRegistered.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\exceptions\CustomExceptions.java
+D:\git\New1\new2\fashion-store-be\basic-authentication\src\main\java\com\fashionstore\basicauth\BasicAuthenticationApplication.java

@@ -1,0 +1,18 @@
+package com.fashionstore.basicauth.models;
+
+import java.util.List;
+
+import com.fashionstore.basicauth.daos.Customer;
+import com.fashionstore.basicauth.daos.RazorpayTransaction;
+
+import lombok.Data;
+
+@Data
+public class OrderModel {
+
+	private String status;
+	private RazorpayTransaction payment;
+	private Customer user;
+	private List<SubOrderModel> subordermodels;
+
+}

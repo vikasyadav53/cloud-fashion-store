@@ -1,0 +1,11 @@
+package com.fashionstore.basicauth.services;
+
+import com.fashionstore.basicauth.daos.User;
+
+public interface UserManagementService {
+	
+	public Long saveUser(User user);
+	
+	public Long saveCustomerDetails(CustomerDetails user);
+
+}

@@ -1,0 +1,57 @@
+package com.fashionstore.basicauth.daos;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "order_table")
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long oid;
+	private String status;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "paymentid", referencedColumnName = "razorpay_payment_id")
+	@JsonManagedReference
+	private RazorpayTransaction payment;	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userid", referencedColumnName = "userid")
+	@JsonManagedReference
+	private Customer user;
+	@CreationTimestamp
+	private LocalDateTime createdat;
+	@UpdateTimestamp
+	private LocalDateTime modat;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="order", cascade = CascadeType.ALL)
+	@JsonBackReference
+	private List<SubOrder> suborders;
+	
+}

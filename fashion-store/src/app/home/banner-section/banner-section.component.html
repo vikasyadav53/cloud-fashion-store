@@ -1,0 +1,16 @@
+<div class="banner-section spad">
+  <div class="container-fluid">
+    <div class="row">
+      <ng-container *ngFor="let clothescategory of clothescategories; let i = index" >
+        <div class="col-lg-4" *ngIf="i < 3" >
+          <div class="single-banner" (click)="loadProductsByCategory(clothescategory)" #vik>
+            <img src={{clothescategory.imageurl}} alt="" />
+            <div class="inner-text">
+              <h4>{{clothescategory.categoryname}}’s</h4>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
